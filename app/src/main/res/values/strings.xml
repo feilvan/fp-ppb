@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Note</string>
+    <string name="desc_add">Add</string>
+    <string name="desc_edit">Edit</string>
+    <string name="desc_delete">Delete</string>
+    <string name="desc_search">Search</string>
+    <string name="Add">Add note</string>
+    <string name="Save">Save</string>
+</resources>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/edt_add_title"
+            style="@style/Widget.Material3.TextInputEditText.OutlinedBox.Dense"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="Title"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
+
+        <Button
+            android:id="@+id/btn_save"
+            style="@style/Widget.Material3.Button.IconButton.Filled"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="0"
+            android:contentDescription="@string/Add"
+            app:icon="@android:drawable/ic_menu_save" />
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/edt_add_content"
+        style="@style/Widget.Material3.TextInputEditText.OutlinedBox.Dense"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Note"
+        android:inputType="textMultiLine"
+        android:minHeight="48dp"
+        android:textAppearance="@style/TextAppearance.Material3.BodyMedium" />
+
+</LinearLayout>
