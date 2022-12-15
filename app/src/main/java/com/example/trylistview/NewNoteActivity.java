@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -61,12 +62,15 @@ public class NewNoteActivity extends AppCompatActivity {
             values.put("date",date);
             values.put("edited_date",date);
             values.put("content",note_content.getText().toString());
-            if (note_title == null) {
+            if (TextUtils.isEmpty(note_title.getText())) {
                 Toast.makeText(getBaseContext(),"Title is empty",Toast.LENGTH_SHORT).show();
+            } else if (TextUtils.isEmpty(note_content.getText())) {
+                Toast.makeText(getBaseContext(),"Note is empty",Toast.LENGTH_SHORT).show();
+            } else {
+                database.insert("note",null,values);
+                Toast.makeText(getBaseContext(),"Saved",Toast.LENGTH_SHORT).show();
+                finish();
             }
-            database.insert("note",null,values);
-            Toast.makeText(getBaseContext(),"Saved",Toast.LENGTH_SHORT).show();
-            finish();
         });
     }
 
