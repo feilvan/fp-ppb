@@ -76,18 +76,18 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <EditText
                 android:id="@+id/edt_new_note_content"
                 style="@style/Widget.Material3.TextInputEditText.OutlinedBox.Dense"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 android:ems="10"
-                android:hint="Content"
+                android:hint="Note"
                 android:inputType="textMultiLine"
                 tools:ignore="TouchTargetSizeCheck" />
         </LinearLayout>

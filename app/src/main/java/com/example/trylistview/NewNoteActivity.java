@@ -61,8 +61,10 @@ public class NewNoteActivity extends AppCompatActivity {
             values.put("date",date);
             values.put("edited_date",date);
             values.put("content",note_content.getText().toString());
+            if (note_title == null) {
+                Toast.makeText(getBaseContext(),"Title is empty",Toast.LENGTH_SHORT).show();
+            }
             database.insert("note",null,values);
-            //database.update("note", values, "id='" + note_id + "'", null);
             Toast.makeText(getBaseContext(),"Saved",Toast.LENGTH_SHORT).show();
             finish();
         });

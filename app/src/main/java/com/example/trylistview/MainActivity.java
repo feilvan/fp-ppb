@@ -1,14 +1,12 @@
 package com.example.trylistview;
 
 import android.annotation.SuppressLint;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,19 +15,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     noteAdapter noteAdapter;
@@ -114,54 +107,24 @@ public class MainActivity extends AppCompatActivity {
         }
         @SuppressLint("SetTextI18n")
         public View getView(int position, View convertView, ViewGroup parent) {
-            note dtNote = getItem(position);
+            note note = getItem(position);
             if (convertView == null) {
                 convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_note, parent, false);
             }
 
             TextView txt_date = convertView.findViewById(R.id.txt_date);
             TextView txt_title = convertView.findViewById(R.id.txt_title);
-            txt_date.setText(dtNote.getCreated_date());
-            txt_title.setText(dtNote.getTitle());
+            TextView txt_content = convertView.findViewById(R.id.txt_content);
+            String substring;
+            int n = 100;
+            if (note.getContent().length() < n) substring = note.getContent().replaceAll("\\r?\\n", " ");
+            else substring = note.getContent().replaceAll("\\r?\\n", " ").substring(0,n) + "...";
+            txt_date.setText(note.getCreated_date());
+            txt_title.setText(note.getTitle());
+            txt_content.setText(substring);
 
             return convertView;
         }
-    }
-
-    @SuppressLint("Range")
-    private int id() {
-        int id;
-        Cursor cursor = database.rawQuery("select * from note", null);
-        if (cursor.getCount() == 0) {
-            id = 1;
-        } else {
-            cursor.moveToLast();
-            id = 1 + cursor.getInt(cursor.getColumnIndex("id"));
-        }
-        cursor.close();
-        return id;
-    }
-
-    @NonNull
-    public String date() {
-        Date date = Calendar.getInstance().getTime();
-        SimpleDateFormat format = new SimpleDateFormat("yyyy MMM dd, HH:mm aaa", Locale.getDefault());
-        return format.format(date);
-    }
-
-    private void add_item (String title, String content) {
-        // Insert to database
-        ContentValues values = new ContentValues();
-        values.put("title", title);
-        values.put("content", content);
-        int id = id();
-        values.put("id", id);
-        String date = date();
-        values.put("date", date);
-        database.insert("note", null, values);
-
-        note_insert(title, content, id, date, date);
-        note_get();
     }
 
     private void note_insert(String title, String content, int id, String date, String edited_date) {
@@ -186,11 +149,5 @@ public class MainActivity extends AppCompatActivity {
             i = cursor.moveToPrevious();
         }
         cursor.close();
-    }
-
-    @NonNull
-    public static List<String> usingSplitMethod(@NonNull String text, int n) {
-        String[] results = text.split("(?<=\\G.{" + n + "})");
-        return Arrays.asList(results);
     }
 }

@@ -51,7 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:text="Date"
-        android:textColor="@color/material_dynamic_neutral50"
+        android:textColor="@color/material_dynamic_neutral60"
         android:textStyle="italic"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edt_note_title" />
@@ -62,7 +62,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:text="Edited Date"
-        android:textColor="@color/material_dynamic_neutral50"
+        android:textColor="@color/material_dynamic_neutral60"
         android:textStyle="italic"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edt_note_date" />
